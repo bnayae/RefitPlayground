@@ -1,24 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace RefitPlayground.Controllers
+namespace RefitPlayground.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class StarsController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class StarsController : ControllerBase
+
+    [HttpGet("/{count}")]
+    public async Task<string> GetAsync(int count)
     {
+        await Task.Delay(500);
+        return new string('*', count);
+    }
 
-        [HttpGet("/{count}")]
-        public async Task<string> GetAsync(int count)
-        {
-            await Task.Delay(500);
-            return new string('*', count);
-        }
-
-        [HttpGet("/double/{count}")]
-        public async Task<string> GetDoubleAsync(int count)
-        {
-            await Task.Delay(500);
-            return new string('*', count * 2);
-        }
+    [HttpGet("/double/{count}")]
+    public async Task<string> GetDoubleAsync(int count)
+    {
+        await Task.Delay(500);
+        return new string('*', count * 2);
     }
 }
